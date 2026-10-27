@@ -1,0 +1,83 @@
+<!-- Formulario de reserva (RF-06) -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reservas · Préstamos de Laptops</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-roles="docente">
+  <header class="barra">
+    <div class="barra-contenido">
+      <a class="marca" href="reservas.html">
+        <svg class="icono-marca" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>
+        <span>Préstamos de Laptops<small>Universidad Estatal de Milagro</small></span>
+      </a>
+      <nav id="navegacion" class="barra-nav" aria-label="Navegación principal"></nav>
+      <div class="usuario">
+        <span class="etiqueta-rol" id="rol-usuario"></span>
+        <button type="button" class="btn btn-cerrar btn-sm" id="btn-cerrar-sesion">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <div class="encabezado-pagina">
+      <h1>Reservas de laptops</h1>
+      <p>Solicita laptops para tu clase y consulta el estado de tus reservas.</p>
+    </div>
+
+    <div class="rejilla-2">
+      <section class="tarjeta" aria-labelledby="titulo-nueva">
+        <h2 id="titulo-nueva">Nueva reserva</h2>
+        <form id="form-reserva" class="formulario">
+          <div class="campo">
+            <label for="aula">Aula</label>
+            <select id="aula" name="id_aula" required></select>
+          </div>
+          <div class="campo">
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha" required>
+          </div>
+          <div class="fila-campos">
+            <div class="campo">
+              <label for="hora_inicio">Hora de inicio</label>
+              <input type="time" id="hora_inicio" name="hora_inicio" required>
+            </div>
+            <div class="campo">
+              <label for="hora_fin">Hora de fin</label>
+              <input type="time" id="hora_fin" name="hora_fin" required>
+            </div>
+          </div>
+          <div class="campo">
+            <label for="cantidad">Cantidad de laptops</label>
+            <input type="number" id="cantidad" name="cantidad_laptops" min="1" inputmode="numeric" required>
+          </div>
+          <p id="mensaje-error" class="aviso aviso-error" role="alert"></p>
+          <button type="submit" id="btn-reservar" class="btn btn-primario btn-bloque">Reservar</button>
+        </form>
+      </section>
+
+      <section class="tarjeta" aria-labelledby="titulo-mis">
+        <h2 id="titulo-mis">Mis reservas</h2>
+        <div class="tabla-contenedor">
+          <table class="tabla" id="tabla-mis-reservas">
+            <thead>
+              <tr><th>ID</th><th>Aula</th><th>Fecha</th><th>Horario</th><th>Laptops</th><th>Estado</th><th>Acción</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie">Sistema de Préstamos de Laptops · Universidad Estatal de Milagro</footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/sesion.js"></script>
+  <script src="js/reserva.js"></script>
+</body>
+</html>

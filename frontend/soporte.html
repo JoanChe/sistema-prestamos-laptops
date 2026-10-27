@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soporte · Préstamos de Laptops</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-roles="soporte,administrador">
+  <header class="barra">
+    <div class="barra-contenido">
+      <a class="marca" href="soporte.html">
+        <svg class="icono-marca" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>
+        <span>Préstamos de Laptops<small>Universidad Estatal de Milagro</small></span>
+      </a>
+      <nav id="navegacion" class="barra-nav" aria-label="Navegación principal"></nav>
+      <div class="usuario">
+        <span class="etiqueta-rol" id="rol-usuario"></span>
+        <button type="button" class="btn btn-cerrar btn-sm" id="btn-cerrar-sesion">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <div class="encabezado-pagina">
+      <h1>Panel de soporte técnico</h1>
+      <p>Registra entregas, devoluciones e incidencias de las reservas.</p>
+    </div>
+
+    <section class="resumen" aria-label="Resumen de reservas">
+      <div class="dato"><strong id="res-total">0</strong><span>Reservas</span></div>
+      <div class="dato"><strong id="res-pendientes">0</strong><span>Pendientes</span></div>
+      <div class="dato"><strong id="res-entregadas">0</strong><span>Entregadas</span></div>
+      <div class="dato"><strong id="res-devueltas">0</strong><span>Devueltas</span></div>
+    </section>
+
+    <section class="tarjeta" aria-labelledby="titulo-reservas">
+      <h2 id="titulo-reservas">Reservas</h2>
+
+      <form id="form-filtros" class="filtros">
+        <div class="campo">
+          <label for="f-fecha">Fecha</label>
+          <input type="date" id="f-fecha">
+        </div>
+        <div class="campo">
+          <label for="f-estado">Estado</label>
+          <select id="f-estado">
+            <option value="">Todos</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="entregada">Entregada</option>
+            <option value="devuelta">Devuelta</option>
+            <option value="cancelada">Cancelada</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primario">Filtrar</button>
+        <button type="button" class="btn btn-secundario" id="btn-limpiar">Ver todas</button>
+        <button type="button" class="btn btn-secundario" id="btn-actualizar">Actualizar</button>
+      </form>
+
+      <div class="tabla-contenedor">
+        <table class="tabla" id="tabla-dashboard">
+          <thead>
+            <tr><th>ID</th><th>Docente</th><th>Aula</th><th>Fecha</th><th>Horario</th><th>Laptops</th><th>Estado</th><th>Acciones</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Entrega / devolución: se elige el rack -->
+  <dialog id="dialogo-movimiento" aria-labelledby="mov-titulo">
+    <form id="form-movimiento" class="dialogo-cuerpo formulario">
+      <h3 id="mov-titulo">Registrar movimiento</h3>
+      <input type="hidden" id="mov-reserva">
+      <input type="hidden" id="mov-tipo">
+      <div class="campo">
+        <label for="mov-rack" id="mov-etiqueta">Rack</label>
+        <select id="mov-rack" required></select>
+      </div>
+      <div class="dialogo-pie">
+        <button type="button" class="btn btn-secundario" id="btn-cancelar-mov">Cancelar</button>
+        <button type="submit" class="btn btn-primario">Confirmar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Incidencias -->
+  <dialog id="dialogo-incidencia" aria-labelledby="inc-titulo">
+    <form id="form-incidencia" class="dialogo-cuerpo formulario">
+      <h3 id="inc-titulo">Reportar incidencia</h3>
+      <input type="hidden" id="inc-reserva">
+      <div class="campo">
+        <label for="inc-tipo">Tipo</label>
+        <select id="inc-tipo" required>
+          <option value="daño">Daño</option>
+          <option value="perdida">Pérdida</option>
+          <option value="retraso">Retraso</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="inc-descripcion">Descripción</label>
+        <textarea id="inc-descripcion" placeholder="Describe lo ocurrido"></textarea>
+      </div>
+      <div class="dialogo-pie">
+        <button type="button" class="btn btn-secundario" id="btn-cancelar-inc">Cancelar</button>
+        <button type="submit" class="btn btn-primario">Registrar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer class="pie">Sistema de Préstamos de Laptops · Universidad Estatal de Milagro</footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/sesion.js"></script>
+  <script src="js/soporte.js"></script>
+</body>
+</html>

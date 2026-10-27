@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iniciar sesión · Préstamos de Laptops</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="login-pagina">
+  <aside class="login-lado">
+    <div class="login-marca">
+      <svg class="icono-marca" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>
+      <h1>Sistema de Préstamos de Laptops</h1>
+    </div>
+    <p class="login-lema">Reserva, entrega y devolución de equipos para tus clases, en un solo lugar.</p>
+    <ul class="lista-beneficios">
+      <li>Reserva desde el computador o el teléfono</li>
+      <li>Disponibilidad verificada al momento de reservar</li>
+      <li>Registro de cada entrega y devolución</li>
+    </ul>
+    <p class="login-institucion">Universidad Estatal de Milagro</p>
+  </aside>
+
+  <main class="login-contenedor">
+    <form id="form-login" class="tarjeta formulario login-tarjeta">
+      <div>
+        <h2>Iniciar sesión</h2>
+        <p class="texto-suave">Ingresa con tu cuenta del sistema.</p>
+      </div>
+
+      <p id="mensaje-info" class="aviso aviso-info" role="status"></p>
+
+      <div class="campo">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" autocomplete="username" required>
+      </div>
+
+      <div class="campo">
+        <label for="contrasena">Contraseña</label>
+        <input type="password" id="contrasena" autocomplete="current-password" required>
+      </div>
+
+      <label class="check"><input type="checkbox" id="ver-contrasena"> Mostrar contraseña</label>
+
+      <p id="mensaje-error" class="aviso aviso-error" role="alert"></p>
+
+      <button type="submit" id="btn-ingresar" class="btn btn-primario btn-bloque">Ingresar</button>
+    </form>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

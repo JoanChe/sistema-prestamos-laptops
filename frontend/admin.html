@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administración · Préstamos de Laptops</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-roles="administrador">
+  <header class="barra">
+    <div class="barra-contenido">
+      <a class="marca" href="admin.html">
+        <svg class="icono-marca" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>
+        <span>Préstamos de Laptops<small>Universidad Estatal de Milagro</small></span>
+      </a>
+      <nav id="navegacion" class="barra-nav" aria-label="Navegación principal"></nav>
+      <div class="usuario">
+        <span class="etiqueta-rol" id="rol-usuario"></span>
+        <button type="button" class="btn btn-cerrar btn-sm" id="btn-cerrar-sesion">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <div class="encabezado-pagina">
+      <h1>Panel de administración</h1>
+      <p>Gestiona usuarios, aulas, racks y equipos, y consulta los reportes de uso.</p>
+    </div>
+
+    <div class="pestanas" role="tablist" aria-label="Secciones de administración">
+      <button type="button" class="pestana" role="tab" data-panel="usuarios" aria-selected="true">Usuarios</button>
+      <button type="button" class="pestana" role="tab" data-panel="aulas" aria-selected="false">Aulas</button>
+      <button type="button" class="pestana" role="tab" data-panel="racks" aria-selected="false">Racks</button>
+      <button type="button" class="pestana" role="tab" data-panel="laptops" aria-selected="false">Laptops</button>
+      <button type="button" class="pestana" role="tab" data-panel="reportes" aria-selected="false">Reportes</button>
+    </div>
+
+    <!-- USUARIOS -->
+    <section class="panel" id="panel-usuarios">
+      <div class="tarjeta">
+        <h2>Nuevo usuario</h2>
+        <form id="form-usuario" class="formulario formulario-rejilla">
+          <div class="campo"><label for="u-nombre">Nombre completo</label><input type="text" id="u-nombre" required></div>
+          <div class="campo"><label for="u-correo">Correo</label><input type="email" id="u-correo" autocomplete="off" required></div>
+          <div class="campo"><label for="u-contrasena">Contraseña (mínimo 8 caracteres)</label><input type="password" id="u-contrasena" minlength="8" autocomplete="new-password" required></div>
+          <div class="campo">
+            <label for="u-rol">Rol</label>
+            <select id="u-rol" required>
+              <option value="">Seleccione un rol</option>
+              <option value="1">Administrador</option>
+              <option value="2">Personal de soporte</option>
+              <option value="3">Docente</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primario">Crear usuario</button>
+        </form>
+      </div>
+      <div class="tarjeta">
+        <h2>Usuarios registrados</h2>
+        <div class="tabla-contenedor">
+          <table class="tabla" id="tabla-usuarios">
+            <thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Estado</th><th>Acciones</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- AULAS -->
+    <section class="panel" id="panel-aulas" hidden>
+      <div class="tarjeta">
+        <h2>Nueva aula</h2>
+        <form id="form-aula" class="formulario formulario-rejilla">
+          <div class="campo"><label for="a-nombre">Nombre del aula</label><input type="text" id="a-nombre" required></div>
+          <div class="campo"><label for="a-ubicacion">Ubicación</label><input type="text" id="a-ubicacion" required></div>
+          <button type="submit" class="btn btn-primario">Crear aula</button>
+        </form>
+      </div>
+      <div class="tarjeta">
+        <h2>Aulas registradas</h2>
+        <div class="tabla-contenedor">
+          <table class="tabla" id="tabla-aulas">
+            <thead><tr><th>Nombre</th><th>Ubicación</th><th>Acciones</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- RACKS -->
+    <section class="panel" id="panel-racks" hidden>
+      <div class="tarjeta">
+        <h2>Nuevo rack</h2>
+        <form id="form-rack" class="formulario formulario-rejilla">
+          <div class="campo"><label for="r-nombre">Nombre del rack</label><input type="text" id="r-nombre" required></div>
+          <div class="campo"><label for="r-ubicacion">Ubicación</label><input type="text" id="r-ubicacion" required></div>
+          <div class="campo"><label for="r-capacidad">Capacidad (laptops)</label><input type="number" id="r-capacidad" min="1" inputmode="numeric" required></div>
+          <div class="campo"><label for="r-aula">Aula asociada</label><select id="r-aula" required></select></div>
+          <button type="submit" class="btn btn-primario">Crear rack</button>
+        </form>
+      </div>
+      <div class="tarjeta">
+        <h2>Racks registrados</h2>
+        <div class="tabla-contenedor">
+          <table class="tabla" id="tabla-racks">
+            <thead><tr><th>Nombre</th><th>Ubicación</th><th>Capacidad</th><th>Aula</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAPTOPS -->
+    <section class="panel" id="panel-laptops" hidden>
+      <div class="tarjeta">
+        <h2>Agregar laptops</h2>
+        <form id="form-laptops-lote" class="formulario formulario-rejilla">
+          <div class="campo"><label for="l-rack">Rack</label><select id="l-rack" required></select></div>
+          <div class="campo"><label for="l-cantidad">Cantidad a agregar</label><input type="number" id="l-cantidad" min="1" inputmode="numeric" required></div>
+          <div class="campo"><label for="l-prefijo">Prefijo del código</label><input type="text" id="l-prefijo" placeholder="Ej.: LAP" required></div>
+          <button type="submit" class="btn btn-primario">Agregar en lote</button>
+        </form>
+      </div>
+      <div class="tarjeta">
+        <h2>Laptops registradas</h2>
+        <div class="tabla-contenedor">
+          <table class="tabla" id="tabla-laptops">
+            <thead><tr><th>Código</th><th>Rack</th><th>Estado</th><th>Acciones</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPORTES -->
+    <section class="panel" id="panel-reportes" hidden>
+      <div class="tarjeta">
+        <h2>Reportes de uso</h2>
+        <form id="form-reporte" class="filtros">
+          <div class="campo">
+            <label for="rep-agrupar">Agrupar por</label>
+            <select id="rep-agrupar" required>
+              <option value="docente">Docente</option>
+              <option value="aula">Aula</option>
+              <option value="franja">Franja horaria</option>
+              <option value="rack">Rack</option>
+              <option value="soporte">Usuario de soporte</option>
+            </select>
+          </div>
+          <div class="campo"><label for="rep-inicio">Desde</label><input type="date" id="rep-inicio"></div>
+          <div class="campo"><label for="rep-fin">Hasta</label><input type="date" id="rep-fin"></div>
+          <button type="submit" class="btn btn-primario">Consultar</button>
+          <button type="button" class="btn btn-secundario" id="btn-exportar-csv">Exportar CSV</button>
+          <button type="button" class="btn btn-secundario" id="btn-exportar-pdf">Exportar PDF</button>
+        </form>
+        <div class="tabla-contenedor">
+          <table class="tabla" id="tabla-reporte">
+            <thead><tr><th id="encabezado-reporte">Agrupación</th><th>Reservas</th><th>Laptops prestadas</th></tr></thead>
+            <tbody><tr><td colspan="3" class="vacio">Elige una agrupación y pulsa "Consultar".</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">Sistema de Préstamos de Laptops · Universidad Estatal de Milagro</footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/sesion.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
