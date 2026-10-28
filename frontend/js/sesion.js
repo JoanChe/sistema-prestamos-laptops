@@ -1,29 +1,3 @@
-// sesion.js — lógica compartida de verificación y cierre de sesión
-
-// 1. Protección de ruta: si no hay token, regresa al login
-/* function verificarSesionActiva() {
-  const token = localStorage.getItem('token_sesion');
-  if (!token) {
-    window.location.href = 'index.html';
-  }
-  return token;
-}
-
-// 2. Cierre de sesión
-function configurarBotonCerrarSesion() {
-  const boton = document.getElementById('btn-cerrar-sesion');
-  if (boton) {
-    boton.addEventListener('click', () => {
-      localStorage.removeItem('token_sesion');
-      localStorage.removeItem('rol_usuario'); // lo usaremos más abajo
-      window.location.href = 'index.html';
-    });
-  }
-}
-
-// Ejecutar automáticamente al cargar cualquier página que incluya este script
-verificarSesionActiva();
-document.addEventListener('DOMContentLoaded', configurarBotonCerrarSesion); */
 
 // sesion.js — protección de página y cierre de sesión (cargar después de ui.js)
 (function () {
